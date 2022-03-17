@@ -1,0 +1,92 @@
+SET @name := 'Hari';
+
+SELECT @name;
+
+SELECT @maxage:= MAX(age) FROM std;
+CREATE table emp (id int, name varchar(100));
+
+DELIMITER //
+CREATE PROCEDURE Test()
+	BEGIN
+		DECLARE A INT(10) DEFAULT 100;
+		DECLARE B INT(10);
+		DECLARE C INT(10);
+		DECLARE D INT(10);
+		SET B = 90;
+		SET C = 45;
+		SET D = A + B - C ;
+		SELECT A,B,C,d;
+	END; //
+	
+	DELIMITER;
+	
+	CALL Test();
+	
+	DECLARE total INT DEFAULT 0;
+	SET total = 10;
+	
+	INSERT INTO emp (id, name, salary)VALUES ('&id','&name','&salary');
+	
+	DELIMITER $$
+	
+	CREATE PROCEDURE TotalSalary()
+	BEGIN	
+		DECLARE salary INT(25) ;
+		
+		SELECT COUNT(*)
+		INTO salary
+		FROM emp;
+		
+		SELECT salary;
+	END$$
+	
+	DELIMITER ;
+	
+	CALL TotalSalary();
+	
+	
+	DELIMITER //
+	
+	CREATE PROCEDURE RepeatExample()
+	BEGIN
+		DECLARE val INT;
+		DECLARE squares INT;
+		DECLARE res VARCHAR(100);
+		SET val = 1;
+		SET squares = 1;
+		SET res = '';
+		REPEAT 
+			SET squares = val * val;
+			SET res = CONCAT(res, squares, ',');
+			SET val = val + 1;
+		UNTIL val>= 10
+		END REPEAT;
+		SELECT res;
+	END//
+DELIMITER ;	
+
+
+SHOW DATABASES LIKE "%schema";
+
+SELECT schema_name FROM information_schema.schema WHERE schema_name LIKE 'emp%';
+
+CREATE TABLE employee (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(50) NOT NULL, city VARCHAR(50), PRIMARY KEY(id) );
+
+ALTER TABLE employee ADD age INT(25) NOT NULL;
+
+ALTER TABLE employee MODIFY city VARCHAR(50) NOT NULL;
+
+ALTER TABLE employee DROP COLUMN age;
+
+DESCRIBE employee;
+
+ALTER TABLE employee CHANGE COLUMN id emp_id INT NOT NULL AUTO_INCREMENT ;
+
+ALTER TABLE emp RENAME TO tbl_empl;
+
+SHOW TABLES FROM employee;
+
+SHOW TABLES IN emp_db;
+
+
+
